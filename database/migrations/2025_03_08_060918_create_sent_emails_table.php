@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('sent_emails', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('email_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->timestamp('sent_at');
+            $table->timestamp('opened_at')->nullable();
+            $table->timestamp('clicked_at')->nullable();
+            $table->enum('report', ['pending', 'reported']);
+            $table->timestamp('reported_at')->nullable();
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('company_id')->constraind()->onDelete('cascade');
+            $table->string('name');
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
     }

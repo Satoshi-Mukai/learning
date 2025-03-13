@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->string('code')->unique();//一意の値を指定。なおtableのidはデフォルトで一意なのでuniqueは不要
+            $table->enum('status', ['active', 'inactive']);
+            $table->timestamps(); // created_atとupdated_atは、自動生成して値を保持しているので呼び出せる
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('companies'); // このテーブルが存在するときに、ロールバック時に削除するという意味
     }
 };

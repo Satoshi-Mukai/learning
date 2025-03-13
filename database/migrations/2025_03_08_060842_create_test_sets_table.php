@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('test_sets', function (Blueprint $table) {
             $table->id();
+            $table->integer('year');
+            $table->string('title');
             $table->timestamps();
         });
     }

@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
+            $table->string('subject');
+            $table->text('body');
+            $table->string('template_name');
             $table->timestamps();
         });
     }
