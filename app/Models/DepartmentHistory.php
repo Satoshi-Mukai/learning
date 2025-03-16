@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class DepartmentHistory extends Model
 {
     use HasFactory;
+
+    public function department()
+    {
+        return $this->belentsTo(Department::class);
+    }
+
 }
